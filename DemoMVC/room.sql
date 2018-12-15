@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 18, 2018 lúc 11:46 AM
--- Phiên bản máy phục vụ: 10.1.26-MariaDB
--- Phiên bản PHP: 7.1.9
+-- Host: 127.0.0.1
+-- Generation Time: Dec 15, 2018 at 05:55 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,35 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `room`
+-- Database: `room`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `gender`
+-- Table structure for table `equipment`
+--
+
+CREATE TABLE `equipment` (
+  `id` int(5) NOT NULL,
+  `name` varchar(200) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `equipment`
+--
+
+INSERT INTO `equipment` (`id`, `name`) VALUES
+(1, 'Máy chiếu'),
+(2, 'Loa'),
+(3, 'Mic'),
+(4, 'Bàn ghế'),
+(5, 'Dụng cụ thực hành');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gender`
 --
 
 CREATE TABLE `gender` (
@@ -34,7 +56,7 @@ CREATE TABLE `gender` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `gender`
+-- Dumping data for table `gender`
 --
 
 INSERT INTO `gender` (`id`, `gender`) VALUES
@@ -45,7 +67,7 @@ INSERT INTO `gender` (`id`, `gender`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `job`
+-- Table structure for table `job`
 --
 
 CREATE TABLE `job` (
@@ -54,7 +76,7 @@ CREATE TABLE `job` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `job`
+-- Dumping data for table `job`
 --
 
 INSERT INTO `job` (`id`, `job_name`) VALUES
@@ -66,7 +88,7 @@ INSERT INTO `job` (`id`, `job_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `register`
+-- Table structure for table `register`
 --
 
 CREATE TABLE `register` (
@@ -79,7 +101,7 @@ CREATE TABLE `register` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `register`
+-- Dumping data for table `register`
 --
 
 INSERT INTO `register` (`id_register`, `id_user`, `id_room`, `id_time`, `time_start`, `time_end`) VALUES
@@ -94,7 +116,20 @@ INSERT INTO `register` (`id_register`, `id_user`, `id_room`, `id_time`, `time_st
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `room`
+-- Table structure for table `report`
+--
+
+CREATE TABLE `report` (
+  `id` int(11) NOT NULL,
+  `id_room` int(5) NOT NULL,
+  `id_equipment` int(5) NOT NULL,
+  `information` varchar(500) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `room`
 --
 
 CREATE TABLE `room` (
@@ -103,7 +138,7 @@ CREATE TABLE `room` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `room`
+-- Dumping data for table `room`
 --
 
 INSERT INTO `room` (`id_room`, `name`) VALUES
@@ -119,7 +154,7 @@ INSERT INTO `room` (`id_room`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `times`
+-- Table structure for table `times`
 --
 
 CREATE TABLE `times` (
@@ -128,7 +163,7 @@ CREATE TABLE `times` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `times`
+-- Dumping data for table `times`
 --
 
 INSERT INTO `times` (`id_time`, `khung_gio`) VALUES
@@ -146,7 +181,7 @@ INSERT INTO `times` (`id_time`, `khung_gio`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -165,7 +200,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id_user`, `user_name`, `password`, `role`, `fullname`, `dateOfBirth`, `email`, `job`, `gender`, `status`, `avatar`, `phone`) VALUES
@@ -179,23 +214,29 @@ INSERT INTO `users` (`id_user`, `user_name`, `password`, `role`, `fullname`, `da
 (25, 'linhngan', 'linhngan', 0, '', '0000-00-00', '', 3, 2, '', '', 0);
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `gender`
+-- Indexes for table `equipment`
+--
+ALTER TABLE `equipment`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `gender`
 --
 ALTER TABLE `gender`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `job`
+-- Indexes for table `job`
 --
 ALTER TABLE `job`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `register`
+-- Indexes for table `register`
 --
 ALTER TABLE `register`
   ADD PRIMARY KEY (`id_register`),
@@ -204,19 +245,27 @@ ALTER TABLE `register`
   ADD KEY `id_time` (`id_time`);
 
 --
--- Chỉ mục cho bảng `room`
+-- Indexes for table `report`
+--
+ALTER TABLE `report`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_room` (`id_room`),
+  ADD KEY `id_equipment` (`id_equipment`);
+
+--
+-- Indexes for table `room`
 --
 ALTER TABLE `room`
   ADD PRIMARY KEY (`id_room`);
 
 --
--- Chỉ mục cho bảng `times`
+-- Indexes for table `times`
 --
 ALTER TABLE `times`
   ADD PRIMARY KEY (`id_time`);
 
 --
--- Chỉ mục cho bảng `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id_user`),
@@ -224,51 +273,63 @@ ALTER TABLE `users`
   ADD KEY `gender` (`gender`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `gender`
+-- AUTO_INCREMENT for table `equipment`
+--
+ALTER TABLE `equipment`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `gender`
 --
 ALTER TABLE `gender`
   MODIFY `id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT cho bảng `job`
+-- AUTO_INCREMENT for table `job`
 --
 ALTER TABLE `job`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT cho bảng `register`
+-- AUTO_INCREMENT for table `register`
 --
 ALTER TABLE `register`
   MODIFY `id_register` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
--- AUTO_INCREMENT cho bảng `room`
+-- AUTO_INCREMENT for table `report`
+--
+ALTER TABLE `report`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
   MODIFY `id_room` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT cho bảng `times`
+-- AUTO_INCREMENT for table `times`
 --
 ALTER TABLE `times`
   MODIFY `id_time` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT cho bảng `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `register`
+-- Constraints for table `register`
 --
 ALTER TABLE `register`
   ADD CONSTRAINT `register_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE,
@@ -276,7 +337,14 @@ ALTER TABLE `register`
   ADD CONSTRAINT `register_ibfk_3` FOREIGN KEY (`id_time`) REFERENCES `times` (`id_time`);
 
 --
--- Các ràng buộc cho bảng `users`
+-- Constraints for table `report`
+--
+ALTER TABLE `report`
+  ADD CONSTRAINT `report_ibfk_1` FOREIGN KEY (`id_room`) REFERENCES `room` (`id_room`),
+  ADD CONSTRAINT `report_ibfk_2` FOREIGN KEY (`id_equipment`) REFERENCES `equipment` (`id`);
+
+--
+-- Constraints for table `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`job`) REFERENCES `job` (`id`),
