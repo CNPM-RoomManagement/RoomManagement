@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2018 at 05:55 PM
+-- Generation Time: Dec 16, 2018 at 06:26 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -84,6 +84,47 @@ INSERT INTO `job` (`id`, `job_name`) VALUES
 (1, 'Giáo viên'),
 (2, 'Sinh viên'),
 (3, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `major`
+--
+
+CREATE TABLE `major` (
+  `id` int(5) NOT NULL,
+  `major_id` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(500) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `major`
+--
+
+INSERT INTO `major` (`id`, `major_id`, `name`) VALUES
+(1, '7420101', 'Sinh học'),
+(2, '7420201', 'Công nghệ sinh học'),
+(3, '7420201CLC', 'Công nghệ sinh học**'),
+(4, '7440102', 'Vật lí học'),
+(5, '7440112', 'Hoá học'),
+(6, '7440112TT', 'Hoá học**'),
+(7, '7440122', 'Khoa học vật liệu'),
+(8, '7440217', 'Địa lí tự nhiên'),
+(9, '7440230QTD', 'Khoa học thông tin địa không gian'),
+(10, '7440301', 'Khoa học môi trường'),
+(11, '7440301TT', 'Khoa học môi trường**'),
+(12, '7460101', 'Toán học'),
+(13, '7460117', 'Toán tin'),
+(14, '7480110CLC', 'Máy tính và khoa học thông tin**'),
+(15, '7480110QTD', 'Máy tính và khoa học thông tin'),
+(16, '7510401', 'Công nghệ kỹ thuật hoá học'),
+(17, '7510401CLC', 'Công nghệ kỹ thuật hoá học**'),
+(18, '7510406', 'Công nghệ kỹ thuật môi trường'),
+(19, '7510407', 'Công nghệ kỹ thuật hạt nhân'),
+(20, '7720203CLC', 'Hoá dược'),
+(21, '7850103', 'Quản lý đất đai'),
+(22, 'QHTN01', 'Khí tượng Thủy văn và Biến đổi khí hậu'),
+(23, 'QHTN02', 'Tài nguyên trái đất');
 
 -- --------------------------------------------------------
 
@@ -193,6 +234,7 @@ CREATE TABLE `users` (
   `dateOfBirth` date NOT NULL,
   `email` varchar(70) NOT NULL,
   `job` int(3) NOT NULL,
+  `major` int(5) NOT NULL,
   `gender` int(1) NOT NULL,
   `status` varchar(5000) NOT NULL,
   `avatar` varchar(250) NOT NULL,
@@ -203,15 +245,15 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id_user`, `user_name`, `password`, `role`, `fullname`, `dateOfBirth`, `email`, `job`, `gender`, `status`, `avatar`, `phone`) VALUES
-(1, 'admin', 'admin', 1, 'Admin', '1975-04-30', 'admin@gmail.com', 0, 1, 'No more information', '', 0),
-(2, 'chinh', 'chinh', 0, 'Hà Thị Chinh', '1998-06-17', 'chinh@gmail.com', 2, 0, 'Cuộc đời có kẽ hở, ánh nắng mới có thể rọi vào </br>Không có đêm tối vĩnh hằng, chỉ có bình minh chưa tới', 'http://sohanews.sohacdn.com/thumb_w/660/2017/photo-4-1509012560460-0-0-409-660-crop-1509012656515.jpg', 1674625466),
-(3, 'to', '123456', 0, 'Nguyễn Thị Tơ', '1998-01-23', 'to123@gmail.com', 0, 0, 'Hỏi thế gian tình là gì???', '', 0),
-(4, 'merlin', 'merlin', 0, 'Merlin', '1985-05-12', 'merlin@gmail.com', 1, 1, 'Giảng dạy: Môn Trí tuệ Nhân tạo', '', 0),
-(6, 'gowther', 'gowther', 0, 'Gowther', '1989-09-07', 'gowther@gmail.com', 1, 0, 'Giảng dạy: Giải tích 2 (Lý thuyết)', '', 0),
-(7, 'meliodas', 'meliodas', 1, 'Meliodas', '1975-02-17', 'meliodas@gmail.com', 1, 1, 'Giảng dạy: Giải tích 2 (Bài tập)', '', 0),
-(18, 'gadien', 'gadien', 0, 'Gadien', '1991-12-30', 'gadien@gmail.com', 1, 1, 'Giảng dạy: Lập trình hướng đối tượng', '', 0),
-(25, 'linhngan', 'linhngan', 0, '', '0000-00-00', '', 3, 2, '', '', 0);
+INSERT INTO `users` (`id_user`, `user_name`, `password`, `role`, `fullname`, `dateOfBirth`, `email`, `job`, `major`, `gender`, `status`, `avatar`, `phone`) VALUES
+(1, 'admin', 'admin', 1, 'Admin', '1975-04-30', 'admin@gmail.com', 0, 1, 1, 'No more information', '', 0),
+(2, 'chinh', 'chinh', 0, 'Hà Thị Chinh', '1998-06-17', 'chinh@gmail.com', 2, 1, 0, 'Cuộc đời có kẽ hở, ánh nắng mới có thể rọi vào </br>Không có đêm tối vĩnh hằng, chỉ có bình minh chưa tới', 'http://sohanews.sohacdn.com/thumb_w/660/2017/photo-4-1509012560460-0-0-409-660-crop-1509012656515.jpg', 1674625466),
+(3, 'to', '123456', 0, 'Nguyễn Thị Tơ', '1998-01-23', 'to123@gmail.com', 0, 1, 0, 'Hỏi thế gian tình là gì???', '', 0),
+(4, 'merlin', 'merlin', 0, 'Merlin', '1985-05-12', 'merlin@gmail.com', 1, 1, 1, 'Giảng dạy: Môn Trí tuệ Nhân tạo', '', 0),
+(6, 'gowther', 'gowther', 0, 'Gowther', '1989-09-07', 'gowther@gmail.com', 1, 1, 0, 'Giảng dạy: Giải tích 2 (Lý thuyết)', '', 0),
+(7, 'meliodas', 'meliodas', 1, 'Meliodas', '1975-02-17', 'meliodas@gmail.com', 1, 1, 1, 'Giảng dạy: Giải tích 2 (Bài tập)', '', 0),
+(18, 'gadien', 'gadien', 0, 'Gadien', '1991-12-30', 'gadien@gmail.com', 1, 1, 1, 'Giảng dạy: Lập trình hướng đối tượng', '', 0),
+(25, 'linhngan', 'linhngan', 0, '', '0000-00-00', '', 3, 1, 2, '', '', 0);
 
 --
 -- Indexes for dumped tables
@@ -233,6 +275,12 @@ ALTER TABLE `gender`
 -- Indexes for table `job`
 --
 ALTER TABLE `job`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `major`
+--
+ALTER TABLE `major`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -270,7 +318,8 @@ ALTER TABLE `times`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id_user`),
   ADD KEY `job` (`job`),
-  ADD KEY `gender` (`gender`);
+  ADD KEY `gender` (`gender`),
+  ADD KEY `major` (`major`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -293,6 +342,12 @@ ALTER TABLE `gender`
 --
 ALTER TABLE `job`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `major`
+--
+ALTER TABLE `major`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `register`
@@ -348,7 +403,8 @@ ALTER TABLE `report`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`job`) REFERENCES `job` (`id`),
-  ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`gender`) REFERENCES `gender` (`id`);
+  ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`gender`) REFERENCES `gender` (`id`),
+  ADD CONSTRAINT `users_ibfk_3` FOREIGN KEY (`major`) REFERENCES `major` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
